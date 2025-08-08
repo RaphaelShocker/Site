@@ -3,21 +3,23 @@ name: Deploy GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # Gatilho: sempre que houver push na branch main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     permissions:
       pages: write
       id-token: write
-    steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/configure-pages@v5
+    steps:
+      - uses: actions/checkout@v4  # Clona o repositório
+
+      - uses: actions/configure-pages@v5  # Configura GitHub Pages
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'  # <- Aqui você tinha um ponto e vírgula extra ('.'.)
+          path: '.'  # Diretório a ser publicado; pode ser alterado se necessário
 
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v4  # Faz o deploy do conteúdo para GitHub Pages
